@@ -1,17 +1,17 @@
-import {NestFactory} from '@nestjs/core';
-import {AppModule} from './app.module';
-import {Transport, MicroserviceOptions} from '@nestjs/microservices';
+import { NestFactory } from '@nestjs/core';
+import { UserModule } from './user.module';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
     const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-        AppModule,
-        {
-            transport: Transport.TCP,
-            options: {
-                host: 'localhost',
-                port: 3001
-            }
-        },
+      UserModule,
+      {
+          transport: Transport.TCP,
+          options: {
+              host: 'localhost',
+              port: 3001,
+          },
+      },
     );
     await app.listen();
 }
